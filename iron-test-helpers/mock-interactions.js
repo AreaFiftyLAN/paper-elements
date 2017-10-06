@@ -331,10 +331,9 @@
    * @param {!Element} target The node to fire the event on.
    */
   function focus(target) {
-    Polymer.Base.fire('focus', {}, {
-      bubbles: false,
-      node: target
-    });
+    target.dispatchEvent(new CustomEvent('focus', {
+      bubbles: false
+    }));
   }
 
   /**
@@ -343,9 +342,8 @@
    * @param {!Element} target The node to fire the event on.
    */
   function blur(target) {
-    Polymer.Base.fire('blur', {}, {
-      bubbles: false,
-      node: target
+    target.dispatchEvent(new CustomEvent('blur'), {
+      bubbles: false
     });
   }
 
