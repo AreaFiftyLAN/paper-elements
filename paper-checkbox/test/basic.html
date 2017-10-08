@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../bower_components/web-component-tester/browser.js"></script>
   <script src="../../iron-test-helpers/mock-interactions.js"></script>
+  <link rel="import" href="../../polymer/lib/elements/custom-style.html">
 
   <link rel="import" href="../paper-checkbox.html">
 </head>
@@ -210,7 +211,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var normal = checkboxes[0].getBoundingClientRect();
           var giant = checkboxes[1].getBoundingClientRect();
           var tiny = checkboxes[2].getBoundingClientRect();
-          debugger;
+
           assert.isTrue(5 === tiny.height);
           assert.isTrue(tiny.height < normal.height);
           assert.isTrue(normal.height < giant.height);

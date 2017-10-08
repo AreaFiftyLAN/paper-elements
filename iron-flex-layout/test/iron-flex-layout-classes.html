@@ -17,8 +17,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../bower_components/web-component-tester/browser.js"></script>
     <link rel="import" href="../iron-flex-layout-classes.html">
+    <link rel="import" href="../../polymer/lib/elements/custom-style.html">
 
     <custom-style>
       <style is="custom-style" include="iron-flex iron-flex-reverse iron-flex-factors iron-flex-alignment iron-positioning">
@@ -120,7 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             window.ShadyCSS.styleDocument();
           }
         });
-        
+
         var container;
 
         setup(function() {
