@@ -63,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       test('can render native elements', function(done) {
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           var element = document.getElementById('nativeDemo');
 
           var rect = element.getBoundingClientRect();
@@ -84,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       test('can render custom elements', function(done) {
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           var element = document.getElementById('customDemo');
 
           var rect = element.getBoundingClientRect();
@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     suite('parsing', function() {
       test('preserves attributes', function(done) {
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           var element = document.getElementById('demoWithAttributes');
 
           var markdownElement = element.$.marked;

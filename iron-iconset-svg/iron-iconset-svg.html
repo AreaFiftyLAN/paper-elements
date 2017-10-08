@@ -139,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.rtlMirroring && this._targetIsRTL(element));
       if (svg) {
         // insert svg element into shadow root, if it exists
-        var pde = Polymer.dom(element.root || element);
+        var pde = element.root || element;
         pde.insertBefore(svg, pde.childNodes[0]);
         return element._svgIcon = svg;
       }
@@ -155,7 +155,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     removeIcon(element) {
       // Remove old svg element
       if (element._svgIcon) {
-        Polymer.dom(element.root || element).removeChild(element._svgIcon);
+        (element.root || element).removeChild(element._svgIcon);
         element._svgIcon = null;
       }
     }
@@ -212,7 +212,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // on FF there is a `watch` method that confuses the icon map, so we
       // need to use a null-based object here.
       var icons = Object.create(null);
-      Polymer.dom(this).querySelectorAll('[id]')
+      this.querySelectorAll('[id]')
         .forEach(function(icon) {
           icons[icon.id] = icon;
         });

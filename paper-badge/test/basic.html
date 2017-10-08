@@ -250,7 +250,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // we are waiting for rAF to prevent flakiness that comes associated
         // with offsetParent not being calculated correctly in 2.0
         requestAnimationFrame(function() {
-          var icon = Polymer.dom(badge.root).querySelector('iron-icon');
+          var icon = badge.shadowRoot.querySelector('iron-icon');
           expect(icon).not.to.be.null;
           expect(icon.icon).to.be.equal(badge.icon);
           expect(badge.getAttribute('aria-label')).to.be.equal(badge.label);
@@ -262,7 +262,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('badge is positioned correctly', function(done) {
           var f = fixture('custom');
           var badge = f.$.badge;
-          var actualbadge = Polymer.dom(badge.root).querySelector('.badge');
+          var actualbadge = badge.shadowRoot.querySelector('.badge');
 
           // we are waiting for rAF to prevent flakiness that comes associated
           // with offsetParent not being calculated correctly in 2.0

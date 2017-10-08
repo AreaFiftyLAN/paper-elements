@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         form.addEventListener('iron-form-element-register', handler);
 
         form.appendChild(element);
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           expect(handler.callCount).to.be.equal(1);
           done();
         }, 1);
@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         form.addEventListener('iron-form-element-unregister', handler);
 
         form.removeChild(element);
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           expect(handler.callCount).to.be.equal(1);
           done();
         }, 1);

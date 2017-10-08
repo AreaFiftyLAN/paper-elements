@@ -143,7 +143,11 @@ Custom property | Description | Default
            * @type {!Polymer.IronMeta}
            */
           _meta: {
-            value: Polymer.Base.create('iron-meta', {type: 'iconset'})
+            value: (function() {
+              const ironMeta = document.createElement('iron-meta');
+              ironMeta.type = 'iconset';
+              return ironMeta;
+            })()
           },
 
           isAttached: Boolean

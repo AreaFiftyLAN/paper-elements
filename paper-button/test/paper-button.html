@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         expect(button.hasAttribute('raised')).to.be.eql(true);
 
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           try {
             expect(button.elevation).to.be.eql(1);
             done();
@@ -56,12 +56,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         button.raised = true;
         expect(button.hasAttribute('raised')).to.be.eql(true);
 
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           expect(button.elevation).to.be.eql(1);
 
           button.raised = false;
           expect(button.hasAttribute('raised')).to.be.eql(false);
-          Polymer.Base.async(function() {
+          Polymer.Async.timeOut.run(() => {
             expect(button.elevation).to.be.eql(0);
             done();
           }, 1);

@@ -223,7 +223,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           input.focus();
           MockInteractions.pressSpace(input);
-          Polymer.Base.async(function(){
+          Polymer.Async.timeOut.run(() =>{
             expect(itemClickHandler.callCount).to.be.equal(0);
             done();
           }, 1);
@@ -238,10 +238,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           MockInteractions.pressSpace(item);
 
-          Polymer.Base.async(function(){
+          Polymer.Async.timeOut.run(() =>{
             // You need two ticks, one for the MockInteractions event, and one
             // for the button event.
-            Polymer.Base.async(function(){
+            Polymer.Async.timeOut.run(() =>{
               expect(itemClickHandler.callCount).to.be.equal(1);
               done();
             }, 1);
@@ -259,7 +259,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           input.focus();
           MockInteractions.pressSpace(input);
-          Polymer.Base.async(function(){
+          Polymer.Async.timeOut.run(() =>{
             expect(itemClickHandler.callCount).to.be.equal(0);
             done();
           }, 1);
@@ -273,10 +273,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           item.addEventListener('click', itemClickHandler);
 
           MockInteractions.pressSpace(item);
-          Polymer.Base.async(function(){
+          Polymer.Async.timeOut.run(() =>{
             // You need two ticks, one for the MockInteractions event, and one
             // for the button event.
-            Polymer.Base.async(function(){
+            Polymer.Async.timeOut.run(() =>{
               expect(itemClickHandler.callCount).to.be.equal(1);
               done();
             }, 1);

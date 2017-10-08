@@ -301,7 +301,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         selector.forceSynchronousItemUpdate();
 
         // NOTE(cdata): I guess `dom-repeat` doesn't stamp synchronously..
-        Polymer.Base.async(function() {
+        Polymer.Async.timeOut.run(() => {
           var firstChild = Polymer.dom(selector).querySelector('div');
           MockInteractions.tap(firstChild);
 

@@ -280,10 +280,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     _updateItems() {
-      let nodes = this.$.content.assignedNodes({flatten: true}).filter(node => node.nodeType === Node.ELEMENT_NODE);
+      let nodes = Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(node => node.nodeType === Node.ELEMENT_NODE);
       if (this.selectable) {
-        nodes = nodes.filter((node) => node.matches(this.selectable)
-        )
+        nodes = nodes.filter((node) => node.matches(this.selectable));
       }
       nodes = Array.prototype.filter.call(nodes, this._bindFilterItem);
       this._setItems(nodes);
