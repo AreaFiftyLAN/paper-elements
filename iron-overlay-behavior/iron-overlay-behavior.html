@@ -521,7 +521,7 @@ context. You should place this element as a child of `<body>` whenever possible.
       if (!this.withBackdrop) {
         return;
       }
-      var path = event.path;
+      var path = event.composedPath();
       if (path.indexOf(this) === -1) {
         event.stopPropagation();
         this._applyFocus();
