@@ -68,7 +68,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ]
     }
 
-    created() {
+    constructor() {
+      super();
       // Used by `iron-form` to handle the case that an element with this behavior
       // doesn't have a role of 'checkbox' or 'radio', but should still only be
       // included when the form is serialized if `this.checked === true`.
