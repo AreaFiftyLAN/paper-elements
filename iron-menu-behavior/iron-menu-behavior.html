@@ -91,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'down': '_onDownKey',
         'esc': '_onEscKey',
         'shift+tab:keydown': '_onShiftTabDown'
-      })
+      });
     }
 
     constructor() {
@@ -118,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Cancel automatically focusing a default item if the menu received focus
       // through a user action selecting a particular item.
       if (this._defaultFocusAsync) {
-        this.cancelAsync(this._defaultFocusAsync);
+        Polymer.Async.timeOut.cancel(this._defaultFocusAsync)
         this._defaultFocusAsync = null;
       }
       var item = this._valueToItem(value);

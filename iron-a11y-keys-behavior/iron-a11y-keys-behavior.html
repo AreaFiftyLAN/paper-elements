@@ -400,6 +400,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               mergedKeyBindings[key] = superKeyBindings[key].concat(binding);
             }
           }
+          for (const [key, bindings] of Object.entries(superKeyBindings)) {
+            if (!mergedKeyBindings[key]) {
+              mergedKeyBindings[key] = bindings;
+            }
+          }
           return mergedKeyBindings;
         }
 
