@@ -205,7 +205,7 @@ context. You should place this element as a child of `<body>` whenever possible.
      * @type {Node}
      */
     get _focusNode() {
-      return this._focusedChild || Polymer.dom(this).querySelector('[autofocus]') || this;
+      return this._focusedChild || this.querySelector('[autofocus]') || this;
     }
 
     /**
