@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../../bower_components/test-fixture/test-fixture.html">
   <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html">
+  <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
   <link rel="import" href="../iron-selector.html">
 
   <style>
@@ -275,9 +276,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           selectedValuesChangedEventCounter++;
         });
 
-        MockInteractions.tap(Polymer.dom(s).children[0]);
-        MockInteractions.tap(Polymer.dom(s).children[0]);
-        MockInteractions.tap(Polymer.dom(s).children[0]);
+        MockInteractions.tap(s.children[0]);
+        MockInteractions.tap(s.children[0]);
+        MockInteractions.tap(s.children[0]);
 
         expect(selectedValuesChangedEventCounter);
       });
@@ -285,16 +286,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('selects from items created by dom-repeat', function(done) {
         var selector;
         var domRepeat;
-        if (Polymer.Element) {
-          selector = fixture('repeatedItems-polymer2');
-          // `observeNodes` callbacks in Polymer 2.x are no longer called
-          // synchronously after a DOM change / upgrade.
-          selector.forceSynchronousItemUpdate();
-          domRepeat = selector.querySelector('dom-repeat');
-        } else {
-          selector = fixture('repeatedItems-polymer1');
-          domRepeat = selector.querySelector('template[is=dom-repeat]');
-        }
+        selector = fixture('repeatedItems-polymer2');
+        // `observeNodes` callbacks in Polymer 2.x are no longer called
+        // synchronously after a DOM change / upgrade.
+        selector.forceSynchronousItemUpdate();
+        domRepeat = selector.querySelector('dom-repeat');
 
         domRepeat.render();
         // See the note in `forceSynchronousItemUpdate`.
@@ -302,7 +298,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         // NOTE(cdata): I guess `dom-repeat` doesn't stamp synchronously..
         Polymer.Async.timeOut.run(() => {
-          var firstChild = Polymer.dom(selector).querySelector('div');
+          var firstChild = selector.querySelector('div');
           MockInteractions.tap(firstChild);
 
           assert.equal(selector.selectedItems[0].textContent, 'foo');
@@ -311,17 +307,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       test('updates selection when dom changes', function() {
-        var firstChild = Polymer.dom(s).querySelector(':first-child');
-        var lastChild = Polymer.dom(s).querySelector(':last-child');
+        var firstChild = s.querySelector(':first-child');
+        var lastChild = s.querySelector(':last-child');
 
         MockInteractions.tap(firstChild);
         MockInteractions.tap(lastChild);
 
         expect(s.selectedItems.length).to.be.equal(2);
 
-        Polymer.dom(s).removeChild(lastChild);
+        s.removeChild(lastChild);
 
-        Polymer.dom.flush();
         // See the note in `forceSynchronousItemUpdate`.
         s.forceSynchronousItemUpdate();
 

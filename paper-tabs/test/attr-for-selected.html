@@ -56,7 +56,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('selected tab has iron-selected class', function() {
-          Polymer.dom.flush();
           assert.isTrue(tabs.querySelector('[name=bar]').classList.contains('iron-selected'));
         });
 

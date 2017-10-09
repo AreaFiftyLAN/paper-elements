@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../bower_components/web-component-tester/browser.js"></script>
   <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html">
 
+  <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
+  <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
   <link rel="import" href="../iron-selector.html">
 
   <style>
@@ -72,15 +74,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var domRepeat;
 
       setup(function(done) {
-        if (Polymer.Element) {
-          scope = fixture('scope-polymer2');
-          selector = scope.querySelector('iron-selector');
-          domRepeat = scope.querySelector('dom-repeat');
-        } else {
-          scope = fixture('scope-polymer1');
-          selector = scope.querySelector('iron-selector');
-          domRepeat = scope.querySelector('template[is=dom-repeat]');
-        }
+        scope = fixture('scope-polymer2');
+        selector = scope.querySelector('iron-selector');
+        domRepeat = scope.querySelector('dom-repeat');
 
         // Wait for the initial iron-items-changed.
         selector.addEventListener('iron-items-changed', function onIronItemsChanged() {

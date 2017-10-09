@@ -24,7 +24,6 @@
    */
   global.flushAsynchronousOperations = function() {
     // force distribution
-    Polymer.dom.flush();
     // force lifecycle callback to fire on polyfill
     window.CustomElements && window.CustomElements.takeRecords();
   };
@@ -35,7 +34,7 @@
    * @param {!Element} node The node containing the template,
    */
   global.forceXIfStamp = function(node) {
-    var templates = Polymer.dom(node.root).querySelectorAll('template[is=dom-if]');
+    var templates = node.shadowRoot.querySelectorAll('template[is=dom-if]');
     for (var tmpl, i = 0; tmpl = templates[i]; i++) {
       tmpl.render();
     }

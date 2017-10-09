@@ -387,7 +387,7 @@ Custom property | Description | Default
       }
 
       _noinkChanged(noink) {
-        var childTabs = Polymer.dom(this).querySelectorAll('paper-tab');
+        var childTabs = this.querySelectorAll('paper-tab');
         childTabs.forEach(noink ? this._setNoinkAttribute : this._removeNoinkAttribute);
       }
 

@@ -102,9 +102,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var node = fixture('basic');
         var focusableNodes = Polymer.IronFocusablesHelper.getTabbableNodes(node);
         assert.equal(focusableNodes.length, 3, '3 nodes are focusable');
-        assert.equal(focusableNodes[0], Polymer.dom(node).querySelector('.focusable1'));
-        assert.equal(focusableNodes[1], Polymer.dom(node).querySelector('.focusable2'));
-        assert.equal(focusableNodes[2], Polymer.dom(node).querySelector('.focusable3'));
+        assert.equal(focusableNodes[0], node.querySelector('.focusable1'));
+        assert.equal(focusableNodes[1], node.querySelector('.focusable2'));
+        assert.equal(focusableNodes[2], node.querySelector('.focusable3'));
       });
 
       test('includes the root if it has a valid tabindex', function() {
@@ -117,7 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('excludes visibility: hidden elements', function() {
         var node = fixture('basic');
-        var focusable = Polymer.dom(node).querySelector('.focusable1');
+        var focusable = node.querySelector('.focusable1');
         focusable.classList.add('hidden');
         var focusableNodes = Polymer.IronFocusablesHelper.getTabbableNodes(node);
         assert.equal(focusableNodes.length, 2, '2 focusable nodes');
@@ -126,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('excludes display: none elements', function() {
         var node = fixture('basic');
-        var focusable = Polymer.dom(node).querySelector('.focusable1');
+        var focusable = node.querySelector('.focusable1');
         focusable.classList.add('no-display');
         var focusableNodes = Polymer.IronFocusablesHelper.getTabbableNodes(node);
         assert.equal(focusableNodes.length, 2, '2 focusable nodes');
@@ -138,7 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var focusableNodes = Polymer.IronFocusablesHelper.getTabbableNodes(node);
         assert.equal(focusableNodes.length, 12, '12 nodes are focusable');
         for (var i = 0; i < 12; i++) {
-          assert.equal(focusableNodes[i], Polymer.dom(node).querySelector('.focusable' + (i + 1)));
+          assert.equal(focusableNodes[i], node.querySelector('.focusable' + (i + 1)));
         }
       });
 
@@ -148,7 +148,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(focusableNodes.length, 4, '4 nodes are focusable');
         assert.equal(focusableNodes[0], node.$.button0);
         assert.equal(focusableNodes[1], node.$.button1);
-        assert.equal(focusableNodes[2], Polymer.dom(node).querySelector('input'));
+        assert.equal(focusableNodes[2], node.querySelector('input'));
         assert.equal(focusableNodes[3], node.$.button2);
       });
 
@@ -159,7 +159,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(focusableNodes[0], node.$.select);
         assert.equal(focusableNodes[1], node.$.wrapped.$.button0);
         assert.equal(focusableNodes[2], node.$.wrapped.$.button1);
-        assert.equal(focusableNodes[3], Polymer.dom(node).querySelector('input'));
+        assert.equal(focusableNodes[3], node.querySelector('input'));
         assert.equal(focusableNodes[4], node.$.wrapped.$.button2);
         assert.equal(focusableNodes[5], node.$.focusableDiv);
       });
@@ -171,7 +171,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(focusableNodes.length, 4, '4 nodes are focusable');
         assert.equal(focusableNodes[0], wrapped.$.button0);
         assert.equal(focusableNodes[1], wrapped.$.button1);
-        assert.equal(focusableNodes[2], Polymer.dom(node).querySelector('input'));
+        assert.equal(focusableNodes[2], node.querySelector('input'));
         assert.equal(focusableNodes[3], wrapped.$.button2);
       });
     });
