@@ -139,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _fireResize() {
       this.dispatchEvent(new CustomEvent('iron-resize', {
-        bubbles: false,
+        bubbles: true,
         composed: true
       }));
     }
@@ -190,12 +190,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // still has to be upgraded), resulting in a parent not able to keep track
       // of the `_interestedResizables`. To solve this, we wait for the document
       // to be done loading before firing the event.
-      if (document.readyState === 'loading') {
-        var _requestResizeNotifications = this._requestResizeNotifications.bind(this);
+      if (document.readyState !== 'complete') {
         document.addEventListener('readystatechange', function readystatechanged() {
           document.removeEventListener('readystatechange', readystatechanged);
-          _requestResizeNotifications();
-        });
+          this._requestResizeNotifications();
+        }.bind(this));
       } else {
         this.dispatchEvent(new CustomEvent('iron-request-resize-notifications', {
           bubbles: true,
@@ -204,6 +203,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }));
 
         if (!this._parentResizable) {
+          Polymer.Async.timeOut.run(() => {
+            this._requestResizeNotifications();
+          });
           window.addEventListener('resize', this._boundNotifyResize);
           this.notifyResize();
         }
