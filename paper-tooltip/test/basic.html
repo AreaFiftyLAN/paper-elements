@@ -320,7 +320,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         // The tooltip is shown because it's a sibling of the target,
         // but it's positioned incorrectly
-        tooltip.toggleClass('hidden', false, actualTooltip);
+        actualTooltip.classList.remove('hidden');
         assert.isFalse(isHidden(actualTooltip));
 
         var contentRect = tooltip.getBoundingClientRect();
@@ -329,9 +329,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tooltip.for = 'target';
 
         // The tooltip needs to hide before it gets repositioned.
-        tooltip.toggleClass('hidden', true, actualTooltip);
+        actualTooltip.classList.add('hidden');
         tooltip.updatePosition();
-        tooltip.toggleClass('hidden', false, actualTooltip);
+        actualTooltip.classList.remove('hidden');
         assert.isFalse(isHidden(actualTooltip));
 
         // The target div width is 100, and the tooltip width is 70, and
@@ -350,7 +350,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var actualTooltip = tooltip.shadowRoot.querySelector('#tooltip');
         assert.isTrue(isHidden(actualTooltip));
         // Simulate but don't actually run the entry animation.
-        tooltip.toggleClass('hidden', false, actualTooltip);
+        actualTooltip.classList.remove('hidden');
         tooltip._showing = true;
         assert.isFalse(isHidden(actualTooltip));
 
