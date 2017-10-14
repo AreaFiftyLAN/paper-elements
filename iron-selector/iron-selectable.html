@@ -372,7 +372,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
       this._selectionChange();
-      this.dispatchEvent(new CustomEvent('iron-' + (isSelected ? 'select' : 'deselect'), {detail: {item: item}}));
+      this.dispatchEvent(new CustomEvent('iron-' + (isSelected ? 'select' : 'deselect'), {
+        detail: {item: item},
+        composed: true,
+        bubbles: true
+      }));
     }
 
     _selectionChange() {
