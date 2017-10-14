@@ -155,7 +155,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           input.addEventListener('focus', function() {
             nFocusEvents += 1;
             // setTimeout to wait for potentially more, erroneous events
-            setTimeout(function() {
+            Polymer.Async.timeOut.run(function() {
               assert.equal(nFocusEvents, 1, 'one focus event fired');
               MockInteractions.blur(input.textarea);
             });

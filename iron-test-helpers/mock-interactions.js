@@ -332,7 +332,8 @@
    */
   function focus(target) {
     target.dispatchEvent(new CustomEvent('focus', {
-      bubbles: false
+      bubbles: false,
+      composed: true
     }));
   }
 
@@ -342,9 +343,10 @@
    * @param {!Element} target The node to fire the event on.
    */
   function blur(target) {
-    target.dispatchEvent(new CustomEvent('blur'), {
-      bubbles: false
-    });
+    target.dispatchEvent(new CustomEvent('blur', {
+      bubbles: false,
+      composed: true
+    }));
   }
 
   /**
