@@ -57,7 +57,7 @@ within `fitInto` boundaries, while preserving the element's CSS margin values.
 @demo demo/index.html
 @polymerBehavior
 */
-  Polymer.IronFitBehavior = (base) => class extends base {
+  Polymer.IronFitBehavior = Polymer.dedupingMixin((base) => class extends base {
 
     static get properties() {
       return {
@@ -621,5 +621,5 @@ within `fitInto` boundaries, while preserving the element's CSS margin values.
       return position;
     }
 
-  };
+  });
 </script>

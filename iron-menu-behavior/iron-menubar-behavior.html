@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    *
    * @polymerBehavior Polymer.IronMenubarBehavior
    */
-  Polymer.IronMenubarBehavior = (base) => class extends Polymer.IronMenuBehavior(base) {
+  Polymer.IronMenubarBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronMenuBehavior(base) {
 
     get keyBindings() {
       return this.mergeKeyBindings(super.keyBindings, {
@@ -73,5 +73,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._focusWithKeyboardEvent(event);
     }
 
-  };
+  });
 </script>

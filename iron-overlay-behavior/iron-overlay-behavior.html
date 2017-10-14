@@ -79,7 +79,7 @@ context. You should place this element as a child of `<body>` whenever possible.
  * @param {Event} event The `event.detail` is the `closingReason` property
  * (contains `canceled`, whether the overlay was canceled).
  */
-  Polymer.IronOverlayBehavior = (base) => class extends Polymer.IronResizableBehavior(Polymer.IronFitBehavior(base)) {
+  Polymer.IronOverlayBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronResizableBehavior(Polymer.IronFitBehavior(base)) {
 
     static get properties() {
       return {
@@ -668,5 +668,5 @@ context. You should place this element as a child of `<body>` whenever possible.
       });
     }
 
-  };
+  });
 </script>

@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * validity such as a character counter or an error message.
    * @polymerBehavior
    */
-  Polymer.PaperInputAddonBehavior = (base) => class extends base {
+  Polymer.PaperInputAddonBehavior = Polymer.dedupingMixin((base) => class extends base {
     connectedCallback() {
       super.connectedCallback();
       this.dispatchEvent(new CustomEvent('addon-attached', {composed: true, bubbles: true}));
@@ -37,6 +37,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      */
     update(state) {
     }
-  };
+  });
 
 </script>

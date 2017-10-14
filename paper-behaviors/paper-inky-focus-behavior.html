@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    *
    * @polymerBehavior Polymer.PaperInkyFocusBehavior
    */
-  Polymer.PaperInkyFocusBehavior = (base) => class extends Polymer.PaperRippleBehavior(Polymer.IronControlState(Polymer.IronButtonState(base))) {
+  Polymer.PaperInkyFocusBehavior = Polymer.dedupingMixin((base) => class extends Polymer.PaperRippleBehavior(Polymer.IronControlState(Polymer.IronButtonState(base))) {
     static get observers() {
       return [
         '_focusedChanged(receivedFocusFromKeyboard)'
@@ -41,5 +41,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ripple.classList.add('circle');
       return ripple;
     }
-  };
+  });
 </script>

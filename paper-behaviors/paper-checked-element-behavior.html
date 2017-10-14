@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * and is compatible with having a ripple effect.
    * @polymerBehavior Polymer.PaperCheckedElementBehavior
    */
-  Polymer.PaperCheckedElementBehavior = (base) => class extends Polymer.IronCheckedElementBehavior(Polymer.PaperInkyFocusBehavior(base)) {
+  Polymer.PaperCheckedElementBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronCheckedElementBehavior(Polymer.PaperInkyFocusBehavior(base)) {
     connectedCallback() {
       this.isAttached = true;
       super.connectedCallback();
@@ -50,5 +50,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.checked = this.active;
       }
     }
-  };
+  });
 </script>

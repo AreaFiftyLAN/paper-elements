@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * properties or methods that are not exposed.
    * @polymerBehavior Polymer.PaperInputBehavior
    */
-  Polymer.PaperInputBehavior = (base) => class extends Polymer.IronA11yKeysBehavior(Polymer.IronControlState(base)) {
+  Polymer.PaperInputBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronA11yKeysBehavior(Polymer.IronControlState(base)) {
     static get properties() {
       return {
         /**
@@ -540,5 +540,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     }
-  };
+  });
 </script>

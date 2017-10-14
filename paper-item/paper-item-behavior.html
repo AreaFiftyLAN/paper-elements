@@ -20,11 +20,11 @@ the items.
 
 <script>
   /** @polymerBehavior Polymer.PaperItemBehavior */
-  Polymer.PaperItemBehavior = (base) => class extends Polymer.IronControlState(Polymer.IronButtonState(base)) {
+  Polymer.PaperItemBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronControlState(Polymer.IronButtonState(base)) {
     connectedCallback() {
       super.connectedCallback();
       this._ensureAttribute('role', 'option');
       this._ensureAttribute('tabindex', '0');
     }
-  };
+  });
 </script>

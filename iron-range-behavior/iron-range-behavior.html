@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * @demo demo/index.html
  * @polymerBehavior
  */
- Polymer.IronRangeBehavior = (base) => class extends base {
+ Polymer.IronRangeBehavior = Polymer.dedupingMixin((base) => class extends base {
 
   static get properties() {
     return {
@@ -120,5 +120,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     this._setRatio(this._calcRatio(this.value) * 100);
   }
 
-};
+});
 </script>

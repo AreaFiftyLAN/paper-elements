@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <script>
   /** @polymerBehavior Polymer.PaperButtonBehavior */
-  Polymer.PaperButtonBehavior = (base) => class extends Polymer.PaperRippleBehavior(Polymer.IronControlState(Polymer.IronButtonState(base))) {
+  Polymer.PaperButtonBehavior = Polymer.dedupingMixin((base) => class extends Polymer.PaperRippleBehavior(Polymer.IronControlState(Polymer.IronButtonState(base))) {
     static get properties() {
       return {
         /**
@@ -94,5 +94,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._ripple.uiUpAction();
       }
     }
-  };
+  });
 </script>

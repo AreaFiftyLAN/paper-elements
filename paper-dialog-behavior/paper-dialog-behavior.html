@@ -47,7 +47,7 @@ It will also ensure that focus remains in the dialog.
 @demo demo/index.html
 @polymerBehavior Polymer.PaperDialogBehavior
 */
-  Polymer.PaperDialogBehavior = (base) => class extends Polymer.IronOverlayBehavior(base) {
+  Polymer.PaperDialogBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronOverlayBehavior(base) {
     static get properties() {
       return {
         /**
@@ -136,5 +136,5 @@ It will also ensure that focus remains in the dialog.
       }
     }
 
-  };
+  });
 </script>

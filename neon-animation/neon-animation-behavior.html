@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * Use `Polymer.NeonAnimationBehavior` to implement an animation.
    * @polymerBehavior
    */
-  Polymer.NeonAnimationBehavior = (base) => class extends base {
+  Polymer.NeonAnimationBehavior = Polymer.dedupingMixin((base) => class extends base {
     static get properties() {
       return {
         /**
@@ -86,6 +86,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      */
     complete() {}
 
-  };
+  });
 
 </script>

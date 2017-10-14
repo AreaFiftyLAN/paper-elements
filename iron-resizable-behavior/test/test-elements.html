@@ -85,7 +85,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </script>
 <script>
   /** @polymerBehavior */
-  Polymer.ObserveIronResizeBehavior = (base) => class extends base {
+  Polymer.ObserveIronResizeBehavior = Polymer.dedupingMixin((base) => class extends base {
     static get properties() {
       return {
         ironResizeCount: {
@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _incrementIronResizeCount() {
       this.ironResizeCount++;
     }
-  };
+  });
 </script>
 <dom-module id="x-shadow-resizable">
   <template>

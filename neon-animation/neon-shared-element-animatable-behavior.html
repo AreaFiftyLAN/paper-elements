@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    * animations.
    * @polymerBehavior Polymer.NeonSharedElementAnimatableBehavior
    */
-  Polymer.NeonSharedElementAnimatableBehavior = (base) => class extends Polymer.NeonAnimatableBehavior(base) {
+  Polymer.NeonSharedElementAnimatableBehavior = Polymer.dedupingMixin((base) => class extends Polymer.NeonAnimatableBehavior(base) {
 
     static get properties() {
       return {
@@ -31,5 +31,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     }
-  };
+  });
 </script>

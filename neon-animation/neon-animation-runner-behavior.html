@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    *
    * @polymerBehavior Polymer.NeonAnimationRunnerBehavior
    */
-  Polymer.NeonAnimationRunnerBehavior = (base) => class extends Polymer.NeonAnimatableBehavior(base) {
+  Polymer.NeonAnimationRunnerBehavior = Polymer.dedupingMixin((base) => class extends Polymer.NeonAnimatableBehavior(base) {
 
     _configureAnimations(configs) {
       var results = [];
@@ -119,5 +119,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       this._animations = {};
     }
-  };
+  });
 </script>

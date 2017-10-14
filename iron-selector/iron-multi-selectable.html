@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   /**
    * @polymerBehavior Polymer.IronMultiSelectableBehavior
    */
-  Polymer.IronMultiSelectableBehavior = (base) => class extends Polymer.IronSelectableBehavior(base) {
+  Polymer.IronMultiSelectableBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronSelectableBehavior(base) {
     static get properties() {
       return {
         /**
@@ -160,5 +160,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this._valueToItem(value);
       }, this);
     }
-  };
+  });
 </script>

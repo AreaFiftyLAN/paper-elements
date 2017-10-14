@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   /**
    * @polymerBehavior Polymer.IronSelectableBehavior
    */
-  Polymer.IronSelectableBehavior = (base) => class extends Polymer.GestureEventListeners(base) {
+  Polymer.IronSelectableBehavior = Polymer.dedupingMixin((base) => class extends Polymer.GestureEventListeners(base) {
 
       /**
        * Fired when iron-selector is activated (selected or deselected).
@@ -423,6 +423,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-  };
+  });
 
 </script>
