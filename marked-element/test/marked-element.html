@@ -15,11 +15,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+  <script src="../../bower_components/web-component-tester/browser.js"></script>
+  <script src="../../bower_components/test-fixture/test-fixture-mocha.js"></script>
 
-  <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../../polymer/polymer.html">
+  <link rel="import" href="../../bower_components/test-fixture/test-fixture.html">
+  <link rel="import" href="../../polymer/polymer-element.html">
+  <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
   <link rel="import" href="../marked-element.html">
 </head>
 <body>
@@ -347,9 +348,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('in code blocks', function() {
-          Polymer.dom(proofElement).innerHTML = '<div camelCase></div>';
+          proofElement.innerHTML = '<div camelCase></div>';
           expect(markedElement.$.content).to.equal(markedElement.outputElement);
-          Polymer.dom.flush();
           expect(isHidden(markedElement.$.content)).to.be.false;
 
           // If Markdown content were put into a `<template>` or directly into the DOM, it would be
@@ -372,7 +372,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('in code blocks', function() {
           proofElement.innerHTML = '<p><div></p></div>';
           expect(markedElement.$.content).to.equal(markedElement.outputElement);
-          Polymer.dom.flush();
           expect(isHidden(markedElement.$.content)).to.be.false;
 
           // If Markdown content were put into a `<template>` or directly into the DOM, it would be
@@ -466,7 +465,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           markedElement.addEventListener('marked-loadend', function firstCheck() {
             markedElement.removeEventListener('marked-loadend', firstCheck);
             proofElement.innerHTML = '<h1 id="test-2">Test 2</h1>\n';
-            Polymer.dom(markedElement).querySelector('[type="text/markdown"]').src = 'test2.md';
+            markedElement.querySelector('[type="text/markdown"]').src = 'test2.md';
 
             markedElement.addEventListener('marked-loadend', function() {
               expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
@@ -506,10 +505,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('changing remote content with data binding', function() {
         setup(function() {
           markedHost = fixture('ChangingRemoteContent');
-
-          if (!Polymer.Element) {
-            markedHost = markedHost.children[0];
-          }
 
           markedElement = markedHost.$.markedElement;
           outputElement = markedHost.$.output;
