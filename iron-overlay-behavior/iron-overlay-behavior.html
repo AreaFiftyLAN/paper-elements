@@ -427,7 +427,7 @@ context. You should place this element as a child of `<body>` whenever possible.
       this.notifyResize();
       this.__isAnimating = false;
 
-      this.dispatchEvent(new CustomEvent('iron-overlay-opened', {composed: true}));
+      this.dispatchEvent(new CustomEvent('iron-overlay-opened', {bubbles: true, composed: true}));
     }
 
     /**
