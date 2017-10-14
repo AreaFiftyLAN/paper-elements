@@ -229,7 +229,6 @@ context. You should place this element as a child of `<body>` whenever possible.
     }
 
     ready() {
-      super.ready();
       // Used to skip calls to notifyResize and refit while the overlay is animating.
       this.__isAnimating = false;
       // with-backdrop needs tabindex to be set in order to trap the focus.
@@ -237,15 +236,15 @@ context. You should place this element as a child of `<body>` whenever possible.
       this.__shouldRemoveTabIndex = false;
       // Used for wrapping the focus on TAB / Shift+TAB.
       this.__firstFocusableNode = this.__lastFocusableNode = null;
-      // Used by __onNextAnimationFrame to cancel any previous callback.
-      this.__raf = null;
       // Focused node before overlay gets opened. Can be restored on close.
       this.__restoreFocusNode = null;
+      super.ready();
       this._ensureSetup();
     }
 
     connectedCallback() {
       super.connectedCallback();
+      this.isAttached = true;
       // Call _openedChanged here so that position can be computed correctly.
       if (this.opened) {
         this._openedChanged(this.opened);
@@ -256,6 +255,7 @@ context. You should place this element as a child of `<body>` whenever possible.
     }
 
     disconnectedCallback() {
+      this.isAttached = false;
       super.disconnectedCallback();
       this._observer.disconnect();
       this._observer = null;
@@ -662,10 +662,9 @@ context. You should place this element as a child of `<body>` whenever possible.
       if (this.__raf) {
         window.cancelAnimationFrame(this.__raf);
       }
-      var self = this;
-      this.__raf = window.requestAnimationFrame(function nextAnimationFrame() {
-        self.__raf = null;
-        callback.call(self);
+      this.__raf = window.requestAnimationFrame(() => {
+        this.__raf = null;
+        callback.call(this);
       });
     }
 

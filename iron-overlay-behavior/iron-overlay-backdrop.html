@@ -81,8 +81,8 @@ Custom property | Description | Default
     }
 
     connectedCallback() {
-      this.isAttached = true;
       super.connectedCallback();
+      this.isAttached = true;
       this.opened && this._openedChanged(this.opened);
     }
 

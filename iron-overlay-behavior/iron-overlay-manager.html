@@ -231,7 +231,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Property observers are not fired until element is attached
       // in Polymer 2.x, so we ensure element is attached if needed.
       // https://github.com/Polymer/polymer/issues/4526
-      this.backdropElement.prepare();
+      if (!!overlay) {
+        this.backdropElement.prepare();
+      } else {
+        this.backdropElement.complete();
+      }
     },
 
     /**
