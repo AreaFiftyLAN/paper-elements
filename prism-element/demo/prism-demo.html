@@ -9,7 +9,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../prism-highlighter.html">
 <link rel="import" href="../prism-theme-default.html">
 
@@ -28,30 +28,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    Polymer({
-      is: 'prism-demo',
+    customElements.define('prism-demo', class extends Polymer.Element {
+      static get is() { return 'prism-demo'; }
 
-      properties: {
-        code: {
-          type: String,
-          observer: '_render'
-        },
+      static get properties() {
+        return {
+          code: {
+            type: String,
+            observer: '_render'
+          },
 
-        lang: {
-          type: String
+          lang: {
+            type: String
+          }
         }
-      },
+      }
 
-      attached: function() {
+      connectedCallback() {
+        super.connectedCallback();
         this._render();
-      },
+      }
 
-      _render: function() {
+      _render() {
         this.$.output.innerHTML = this.highlight(this.code, this.lang);
-      },
+      }
 
-      highlight: function(code, lang) {
-        return this.fire('syntax-highlight', {code: code, lang: lang}).detail.code;
+      highlight(code, lang) {
+        const event = new CustomEvent('syntax-highlight', {
+          detail: {code, lang},
+          composed: true
+        });
+        this.dispatchEvent(event);
+        return event.detail.code;
       }
     });
   </script>
