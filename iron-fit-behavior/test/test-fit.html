@@ -23,6 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <slot></slot>
   </template>
   <script>
-    customElements.define('test-fit', class extends Polymer.IronFitBehavior(Polymer.Element) {});
+    customElements.define('test-fit', class extends Polymer.IronFitBehavior(Polymer.Element) {
+      static get is() { return 'test-fit'; }
+    });
   </script>
 </dom-module>

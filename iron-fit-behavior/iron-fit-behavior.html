@@ -225,7 +225,7 @@ within `fitInto` boundaries, while preserving the element's CSS margin values.
       var parent = this.parentNode;
 
       if (parent && parent.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-        parent = parent.host;
+        parent = this.getRootNode().host;
       }
 
       return parent;
