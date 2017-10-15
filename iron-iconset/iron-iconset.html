@@ -152,16 +152,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     connectedCallback() {
       this._meta = new Polymer.IronMeta({type: 'iconset', key: null, value: null});
-      // Manually create a shadow root as this element does not have a dom-module
-      this.attachShadow({mode: 'open'});
       super.connectedCallback();
       this._ensureAttribute('style', 'display: none;');
     }
 
     ready() {
-      super.ready();
       // theme data must exist at ready-time
       this._themes = this._mapThemes();
+      super.ready();
     }
 
     /**
@@ -195,7 +193,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _mapThemes() {
       var themes = Object.create(null);
-      this.shadowRoot.querySelectorAll('property[theme]')
+      this.querySelectorAll('property[theme]')
         .forEach(function(property) {
           var offsetX = window.parseInt(
             property.getAttribute('offset-x'), 10
