@@ -202,8 +202,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           composed: true
         }));
 
-        if (!this._parentResizable) {
-          if (window.HTMLImports && !this._delayedResize) {
+        if (!this._parentResizable && !this._delayedResize) {
+          if (window.HTMLImports) {
             this._delayedResize = true;
             Polymer.Async.timeOut.run(() => {
               this._requestResizeNotifications();
