@@ -1,0 +1,86 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../polymer/lib/utils/debounce.html">
+<link rel="import" href="../../iron-resizable-behavior/iron-resizable-behavior.html">
+
+<script>
+
+  /**
+   * @polymerBehavior Polymer.AppLayoutBehavior
+   **/
+  Polymer.AppLayoutBehavior = Polymer.dedupingMixin((base) => class extends Polymer.IronResizableBehavior(base) {
+
+    constructor() {
+      super();
+      this.addEventListener('app-reset-layout', this._appResetLayoutHandler.bind(this));
+      this.addEventListener('iron-resize', this.resetLayout.bind(this));
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.isAttached = true;
+      this.dispatchEvent(new CustomEvent('app-reset-layout', { bubbles: true, composed: true }));
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      this.isAttached = false;
+    }
+
+    _appResetLayoutHandler(e) {
+      if (e.composedPath()[0] === this) {
+        return;
+      }
+      this.resetLayout();
+      e.stopPropagation();
+    }
+
+    /**
+     * Resets the layout. If you changed the size of this element via CSS
+     * you can notify the changes by either firing the `iron-resize` event
+     * or calling `resetLayout` directly.
+     *
+     * @method resetLayout
+     */
+    resetLayout() {
+      // Polymer v2.x
+      var self = this;
+      var cb = this._updateLayoutStates.bind(this);
+      this._layoutDebouncer = Polymer.Debouncer.debounce(
+          this._layoutDebouncer,
+          Polymer.Async.animationFrame,
+          cb);
+      this._notifyDescendantResize();
+    }
+
+    _notifyLayoutChanged() {
+      // TODO: the event `app-reset-layout` can be fired synchronously
+      // as long as `_updateLayoutStates` waits for all the microtasks after rAF.
+      // E.g. requestAnimationFrame(setTimeOut())
+      requestAnimationFrame(() => {
+        this.dispatchEvent(new CustomEvent('app-reset-layout', { bubbles: true, composed: true }));
+      });
+    }
+
+    _notifyDescendantResize() {
+      if (!this.isAttached) {
+        return;
+      }
+      this._interestedResizables.forEach(function(resizable) {
+        if (this.resizerShouldNotify(resizable)) {
+          this._notifyDescendant(resizable);
+        }
+      }, this);
+    }
+  });
+
+</script>
